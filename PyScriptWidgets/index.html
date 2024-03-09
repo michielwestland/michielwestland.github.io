@@ -14,8 +14,8 @@
     </script>
 
     <!-- Set the *base url* when deploying to: https://michielwestland.github.io/PyScriptWidgets -->
-    <!-- <base href="https://michielwestland.github.io/PyScriptWidgets"> -->
-    <base href=".">
+    <base href="https://michielwestland.github.io/PyScriptWidgets">
+    <!-- <base href="."> -->
 
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 
@@ -55,8 +55,9 @@
     </div>
 
     <!-- Application main Python script -->
-    <!-- Prefix the urls with /PyScriptWidgets (the base) when deploying to: https://michielwestland.github.io/PyScriptWidgets -->
-    <script type="py" src="./main.py" config="./pyscript.toml"></script>
+    <!-- Prefix these urls with *base url* /PyScriptWidgets when deploying to: https://michielwestland.github.io/PyScriptWidgets -->
+    <script type="py" src="./PyScriptWidgets/main.py" config="./PyScriptWidgets/pyscript.toml"></script>
+    <!-- <script type="py" src="./main.py" config="./pyscript.toml"></script> -->
 
     <!-- Display the total page load time, remove loading spinner, restore original title after a while -->
     <!-- See: https://jeff.glass/post/whats-new-pyscript-2023-11-1/ -->
