@@ -1,0 +1,17 @@
+/* Some CSS tweaks for Semantic UI or alternatively Fomantic UI elements */
+
+@media (prefers-color-scheme: light) {
+    body {
+        background-image: linear-gradient(to bottom right, #9cd1ff, white);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-image: linear-gradient(to bottom right, #1e4a7c, rgb(75, 75, 75));
+    }
+}
+
+label.ui.inverted {
+    color: white;
+}

@@ -1,38 +1,76 @@
+"""Main file"""
+
 from datetime import datetime
-from js import fetch, JSON # type: ignore
-from widgets import PPanel, PGrid, PTextInput, PButton, PLabel, bindToDom
+from js import fetch, JSON  # type: ignore # pylint: disable=import-error
+from widgets import PGrid, PTextInput, PButton, PLabel, bind_to_dom
 from todo import TodoPanel
 
-class Main(PPanel):
+# Set the *base url* when deploying to: https://michielwestland.github.io/PyScriptWidgets
+# BASE_URL = "https://michielwestland.github.io/PyScriptWidgets"
+BASE_URL = "."
+
+
+class Main(PGrid):
+    """Main class"""
 
     def __init__(self):
-        super().__init__(True)
-        self.inp = PTextInput("").setPlaceholder("press the button...")
-        self.btn = PButton("Press me!").setColor("blue").onClick(self.btnClick)
+        super().__init__()
+        self.set_width("100vw")
+        self.set_height("100vh")
 
-        self.grd = PGrid().setMargin(6).setGap(6)
-        self.grd.setRows(["36px", "36px", "72px"])
-        self.grd.setColumns(["100px", "200px", "100px", "200px"])
-        self.grd.setAreas([
-            [PLabel("Code")       , PTextInput("<code>"), PLabel("Number"), PTextInput("<number>")], 
-            [PLabel("Description"), self.inp            , self.inp        , self.inp              ], 
-            [None                 , None                , self.btn        , self.btn              ],
-        ])
-        self.addChild(self.grd)
+        self.set_rows([100, "100%", 50])
+        self.set_columns([100, "60%", 100, "40%"])
 
-        self.todoPnl = TodoPanel()
-        self.addChild(self.todoPnl)
+        # First demo panel
+        self.inp = PTextInput("").set_placeholder("press the button...")
+        self.btn = PButton("Press me!").set_color("blue").on_click(self.btn_click)
 
-    async def btnClick(self, event): 
-        self.btn.setColor("red")
-        response = await fetch("/PyScriptWidgets/data.json", {"method": "GET"})
+        self.grd = PGrid().set_margin(6).set_gap(6)
+        self.grd.set_rows([36, 36, 72])
+        self.grd.set_columns([100, 200, 100, 200])
+        self.grd.set_areas(
+            [
+                [
+                    PLabel("Code"),
+                    PTextInput("ABC").set_pattern("[A-Z]+").set_required(True),
+                    PLabel("Number"),
+                    PTextInput("123").set_readonly(True),
+                ],
+                [PLabel("Description").set_for(self.inp), self.inp, self.inp, self.inp],
+                [PLabel("Hidden").set_visible(False), None, self.btn, self.btn],
+            ]
+        )
+
+        # Second demo panel
+        self.todo = TodoPanel()
+
+        hdr = PLabel("Header").set_bg_color("blue")
+        ftr = PLabel("Footer").set_bg_color("green")
+        self.set_areas(
+            [
+                [hdr, hdr, hdr, hdr],
+                [
+                    PLabel("Left").set_bg_color("purple"),
+                    self.grd,
+                    PLabel("Middle").set_bg_color("purple"),
+                    self.todo,
+                ],
+                [ftr, ftr, ftr, ftr],
+            ]
+        )
+
+    async def btn_click(self, event):  # pylint: disable=unused-argument
+        """Button click event handler"""
+        self.btn.set_color("red")
+        response = await fetch("./data.json", {"method": "GET"})
         data = await response.json()
-        self.inp.setValue("Now is: " + str(datetime.now()) + " " + JSON.stringify(data))
+        self.inp.set_value("Now is: " + str(datetime.now()) + " " + JSON.stringify(data))
 
-    def afterPageLoad(self):
-        super().afterPageLoad()
-        # Hier kan je code uitproberen na page refresh i.c.m. Live Server/Live Preview
-        self.btn.setColor("green")
+    def after_page_load(self):
+        super().after_page_load()
+        # Here, try out code after a page refresh with Live Server/Live Preview
+        self.btn.set_color("green")
+
 
 if __name__ == "__main__":
-    bindToDom(Main, "root")
+    bind_to_dom(Main, "root", debug=False)
