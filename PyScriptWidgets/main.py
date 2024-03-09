@@ -6,6 +6,7 @@ from widgets import PGrid, PTextInput, PButton, PLabel, bind_to_dom
 from todo import TodoPanel
 
 # Set the *base url* when deploying to: https://michielwestland.github.io/PyScriptWidgets
+# Make sure the url does not end with a forward slash!
 BASE_URL = "https://michielwestland.github.io/PyScriptWidgets"
 # BASE_URL = "."
 
