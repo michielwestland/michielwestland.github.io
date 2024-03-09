@@ -14,8 +14,9 @@
     </script>
 
     <!-- Set the *base url* when deploying to: https://michielwestland.github.io/PyScriptWidgets -->
-    <base href="https://michielwestland.github.io/PyScriptWidgets">
-    <!-- <base href="."> -->
+    <!-- Make sure the url ends with a forward slash! -->
+    <base href="https://michielwestland.github.io/PyScriptWidgets/">
+    <!-- <base href="./"> -->
 
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
 
@@ -36,7 +37,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
 
-    <link rel="stylesheet" href="./widgets.css" />
+    <link rel="stylesheet" href="widgets.css" />
 
     <!-- PyScript / Pyodide interpreter -->
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.2.1/core.css" />
@@ -56,7 +57,7 @@
 
     <!-- Application main Python script -->
     <!-- Prefix these urls with *base url* /PyScriptWidgets when deploying to: https://michielwestland.github.io/PyScriptWidgets -->
-    <script type="py" src="./PyScriptWidgets/main.py" config="./PyScriptWidgets/pyscript.toml"></script>
+    <script type="py" src="main.py" config="pyscript.toml"></script>
     <!-- <script type="py" src="./main.py" config="./pyscript.toml"></script> -->
 
     <!-- Display the total page load time, remove loading spinner, restore original title after a while -->
