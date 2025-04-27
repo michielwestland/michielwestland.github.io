@@ -74,7 +74,3 @@ from widgets.text import *
 
 # TODO Implement modal widget, see: https://fomantic-ui.com/modules/modal.html
 #class PModal(PCompoundWidget):    """Modal dialog widget class"""
-
-
-def version():
-    return "0.9.0"
