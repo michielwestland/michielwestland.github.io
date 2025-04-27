@@ -1,15 +1,32 @@
-name = "PyScriptWidgets"
+# Copyright (c) 2025 Michiel Westland
+# This software is distributed under the terms of the MIT license. See LICENSE.txt
+#
+# PyScript configuration file
+# See: https://pyscript.github.io/docs/2024.1.3/user-guide/configuration/#files
 
+name = "PyScriptWidgets"
 packages = [
     "asyncio",
 ]
 
 [files]
-# Set the *base url* when deploying to: https://michielwestland.github.io/PyScriptWidgets
+# Set the BASE_URL when deploying to: https://michielwestland.github.io/PyScriptWidgets
 # Make sure the url does not end with a forward slash!
-"{BASE}" = "https://michielwestland.github.io/PyScriptWidgets"
-# "{BASE}" = "."
-"{BASE}/widgets.py" = "./widgets.py"
-"{BASE}/todo.py" = "./todo.py"
+"{BASE_URL}" = "https://michielwestland.github.io/PyScriptWidgets"
+# For loval development:
+# "{BASE_URL}" = "http://127.0.0.1:8000"
 
-# See: https://pyscript.github.io/docs/2024.1.3/user-guide/configuration/#files
+"{BASE_URL}/widgets/__init__.py" = "./widgets/__init__.py"
+"{BASE_URL}/widgets/base.py" = "./widgets/base.py"
+"{BASE_URL}/widgets/button.py" = "./widgets/button.py"
+"{BASE_URL}/widgets/compound.py" = "./widgets/compound.py"
+"{BASE_URL}/widgets/focussable.py" = "./widgets/focussable.py"
+"{BASE_URL}/widgets/globals.py" = "./widgets/globals.py"
+"{BASE_URL}/widgets/grid.py" = "./widgets/grid.py"
+"{BASE_URL}/widgets/input.py" = "./widgets/input.py"
+"{BASE_URL}/widgets/label.py" = "./widgets/label.py"
+"{BASE_URL}/widgets/panel.py" = "./widgets/panel.py"
+"{BASE_URL}/widgets/text.py" = "./widgets/text.py"
+
+"{BASE_URL}/main.py" = "./main.py"
+"{BASE_URL}/todo.py" = "./todo.py"

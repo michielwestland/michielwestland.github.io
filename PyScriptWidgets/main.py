@@ -1,14 +1,15 @@
-"""Main file"""
+"""
+Copyright (c) 2025 Michiel Westland
+This software is distributed under the terms of the MIT license. See LICENSE.txt
+
+Main file
+"""
 
 from datetime import datetime
 from js import fetch, JSON  # type: ignore # pylint: disable=import-error
-from widgets import PGrid, PTextInput, PButton, PLabel, bind_to_dom
-from todo import TodoPanel
 
-# Set the *base url* when deploying to: https://michielwestland.github.io/PyScriptWidgets
-# Make sure the url does not end with a forward slash!
-BASE_URL = "https://michielwestland.github.io/PyScriptWidgets"
-# BASE_URL = "."
+from widgets import PGrid, PTextInput, PButton, PLabel, bind_to_dom, base_url
+from todo import TodoPanel
 
 
 class Main(PGrid):
@@ -16,8 +17,8 @@ class Main(PGrid):
 
     def __init__(self):
         super().__init__()
-        self.set_width("100vw")
-        self.set_height("100vh")
+        self.set_width("100dvw")
+        self.set_height("100dvh")
 
         self.set_rows([100, "100%", 50])
         self.set_columns([100, "60%", 100, "40%"])
@@ -63,15 +64,15 @@ class Main(PGrid):
     async def btn_click(self, event):  # pylint: disable=unused-argument
         """Button click event handler"""
         self.btn.set_color("red")
-        response = await fetch(BASE_URL + "/data.json", {"method": "GET"})
+        response = await fetch(base_url() + "/assets/demo-data.json", {"method": "GET"})
         data = await response.json()
         self.inp.set_value("Now is: " + str(datetime.now()) + " " + JSON.stringify(data))
 
-    def after_page_load(self):
+    def after_page_load(self):  # pylint: disable=useless-parent-delegation
         super().after_page_load()
         # Here, try out code after a page refresh with Live Server/Live Preview
-        self.btn.set_color("green")
+        #self.btn.set_color("green")
 
 
 if __name__ == "__main__":
-    bind_to_dom(Main, "root", debug=False)
+    bind_to_dom(Main, "root")

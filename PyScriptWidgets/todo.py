@@ -1,4 +1,9 @@
-"""Todo example"""
+"""
+Copyright (c) 2025 Michiel Westland
+This software is distributed under the terms of the MIT license. See LICENSE.txt
+
+Todo example
+"""
 
 from datetime import datetime
 from widgets import PPanel, PLabel, PTextInput, PButton
@@ -15,7 +20,7 @@ class TodoForm(PPanel):
         self.add_children([self.inp, self.add_btn])
 
     def add_btn_click(self, event):  # pylint: disable=unused-argument
-        """Ädd button event handler"""
+        """Add button event handler"""
         text = self.inp.get_value()
         if len(text) == 0:
             text = "<" + str(datetime.now()) + ">"
@@ -30,7 +35,6 @@ class TodoItem(PPanel):
         super().__init__(False)
         self.set_gap(5)
         self.lbl = PLabel(todoTxt)
-        # See: https://semantic-ui.com/elements/icon.html
         self.delete_btn = (
             PButton("Delete").set_icon("trash alternate").on_click(self.delete_btn_click)
         )
